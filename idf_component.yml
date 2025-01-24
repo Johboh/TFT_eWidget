@@ -1,0 +1,9 @@
+version: "2.5.43"
+description: Fork of TFT_eWidget with added ESP-IDF (idf_component.yaml) component support.
+url: https://github.com/Johboh/TFT_eWidget
+dependencies:
+  idf: ">=5.1"
+  espressif/arduino-esp32:
+    version: ">=3.1.1"
+  johboh/TFT_eSPI:
+    git: https://github.com/Johboh/TFT_eSPI.git
