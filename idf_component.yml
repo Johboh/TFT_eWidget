@@ -1,4 +1,4 @@
-version: "2.5.43"
+version: "0.0.5"
 description: Fork of TFT_eWidget with added ESP-IDF (idf_component.yaml) component support.
 url: https://github.com/Johboh/TFT_eWidget
 dependencies:
