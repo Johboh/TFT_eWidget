@@ -41,12 +41,12 @@
 // #########################################################################
 // Draw meter meter at x, y and define full scale range & the scale labels
 // #########################################################################
-void MeterWidget::analogMeter(uint16_t x, uint16_t y, float fullScale, const char *units, const char *s0, const char *s1, const char *s2, const char *s3, const char *s4)
+void MeterWidget::analogMeter(uint16_t x, uint16_t y, float fullScale, const char *units, const char *s0, const char *s1, const char *s2, const char *s3, const char *s4, bool with_borders)
 {
-  analogMeter(x, y, 0.0, fullScale, units, s0, s1, s2, s3, s4);
+  analogMeter(x, y, 0.0, fullScale, units, s0, s1, s2, s3, s4, with_borders);
 }
 
-void MeterWidget::analogMeter(uint16_t x, uint16_t y, float startScale, float endScale, const char *units, const char *s0, const char *s1, const char *s2, const char *s3, const char *s4)
+void MeterWidget::analogMeter(uint16_t x, uint16_t y, float startScale, float endScale, const char *units, const char *s0, const char *s1, const char *s2, const char *s3, const char *s4, bool with_borders)
 {
   // Save offsets for needle plotting
   mx = x;
@@ -63,7 +63,9 @@ void MeterWidget::analogMeter(uint16_t x, uint16_t y, float startScale, float en
   strncpy(ms4, s4, 4);
 
   // Meter outline
-  ntft->fillRect(x, y, 239, 126, TFT_GREY);
+  if (with_borders) {
+    ntft->fillRect(x, y, 239, 126, TFT_GREY);
+  }
   ntft->fillRect(x + 5, y + 3, 230, 119, TFT_WHITE);
 
   ntft->setTextColor(TFT_BLACK);  // Text colour
@@ -158,7 +160,9 @@ void MeterWidget::analogMeter(uint16_t x, uint16_t y, float startScale, float en
 
   ntft->drawString(mlabel, x + 5 + 230 - 40, y + 119 - 20, 2); // Units at bottom right
   ntft->drawCentreString(mlabel, x + 120, y + 70, 4);          // Comment out to avoid font 4
-  ntft->drawRect(x + 5, y + 3, 230, 119, TFT_BLACK);           // Draw bezel line
+  if (with_borders) {
+    ntft->drawRect(x + 5, y + 3, 230, 119, TFT_BLACK);           // Draw bezel line
+  }
   
   updateNeedle(0, 0);
 }
